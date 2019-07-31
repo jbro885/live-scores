@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Football - Live Scores</title>
+
+    <%- include('partials/tags.ejs') %>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- Heading -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <% if(locals.heading) %>
+            <h3 class="text-capitalize"><%= locals.heading %></h3>
+          </div>
+        </div>
+
+
+
+      </div>
+    </section>
+    <!-- Heading -->
+
+    <%- include('partials/footer.ejs') %>
+
+    <!-- Scripts placed at bottom for faster load times -->
+    <%- include('partials/scripts.ejs') %>
+  </body>
+</html>

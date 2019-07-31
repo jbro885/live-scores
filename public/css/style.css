@@ -1,0 +1,14 @@
+title
+{
+  text-transform: capitalize;
+}
+
+body
+{
+  padding-top: 85px;
+}
+
+.card-body p
+{
+  font-size: 13px;
+}
