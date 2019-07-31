@@ -22,14 +22,13 @@ router.get('/:sport', function(req, res)
   var sport = req.params.sport;
 
   axios.get(baseUrl + '/api/' + sport + '/?met=Countries&APIkey=' + apiKey)
-  .catch(err => console.log('ok'))
-  .then(response =>
+  .then(function(response)
   {
-    // console.log(response);
+    console.log(response.data.result);
     res.render('template', 
     {
       'heading': sport,
-      'response': response
+      'response': response.data
     })
   });
 });

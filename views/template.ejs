@@ -17,16 +17,24 @@
             <h3 class="text-capitalize"><%= locals.heading %></h3>
           </div>
         </div>
-
-
-
       </div>
     </section>
     <!-- Heading -->
 
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <% for(var i = 0; i < response.length; i++) { %>
+              <p><%= response.result[i] %></p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <%- include('partials/footer.ejs') %>
 
-    <!-- Scripts placed at bottom for faster load times -->
     <%- include('partials/scripts.ejs') %>
   </body>
 </html>
