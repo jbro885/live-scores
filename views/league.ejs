@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Football - Live Scores</title>
+
+    <%- include('partials/tags.ejs') %>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- Heading -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <% if(league) %>
+            <h3><%= league %></h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Heading -->
+
+    <section>
+      <div class="container">
+        <div class="row">
+
+          <div class="col">
+            <% if(locals.response) { %>
+              
+            <% } else { %>
+              No league data for <%= locals.sport %> returned.
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <%- include('partials/footer.ejs') %>
+
+    <%- include('partials/scripts.ejs') %>
+  </body>
+</html>
