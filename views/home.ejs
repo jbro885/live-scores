@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Live Scores</title>
+
+    <%- include('partials/tags.ejs') %>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- Heading -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <h3 class="text-capitalize">Home</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Heading -->
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <% if(locals.response) { %>
+              do something
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('partials/footer.ejs') %>
+
+    <%- include('partials/scripts.ejs') %>
+  </body>
+</html>

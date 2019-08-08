@@ -13,16 +13,29 @@
       <div class="container">
         <div class="row">
           <div class="col text-center">
-            <% if(locals.heading) %>
-            <h3 class="text-capitalize"><%= locals.heading %></h3>
+            <% if(league) %>
+            <h3><%= league %></h3>
           </div>
         </div>
-
-
-
       </div>
     </section>
     <!-- Heading -->
+
+    <section>
+      <div class="container">
+        <div class="row">
+
+          <div class="col">
+            <% if(locals.response) { %>
+              
+            <% } else { %>
+              No league data for <%= locals.sport %> returned.
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
     <%- include('partials/footer.ejs') %>
 

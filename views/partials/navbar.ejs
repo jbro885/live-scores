@@ -8,11 +8,25 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="dropdown-item" href="/football">Football</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Football
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/football/live">Live Scores</a>
+            <a class="dropdown-item" href="/football/leagues">Leagues</a>
+            <a class="dropdown-item" href="/football/fixtures">Fixtures</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="dropdown-item" href="/cricket">Cricket</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cricket
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/cricket/live">Live Scores</a>
+            <a class="dropdown-item" href="/cricket/leagues">Leagues</a>
+            <a class="dropdown-item" href="/cricket/fixtures">Fixtures</a>
+          </div>
         </li>
       </ul>
       <form action="/search" method="POST">

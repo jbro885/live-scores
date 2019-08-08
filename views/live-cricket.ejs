@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Cricket - Live Scores</title>
+
+    <%- include('partials/tags.ejs') %>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- Heading -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <% if(locals.sport) %>
+            <h3 class="text-capitalize">Live <%= locals.sport %> Scores</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Heading -->
+
+    <div class="pb-2"></div>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            <% if(locals.response.result) { %>
+              <% for(var i = 0; i < response.result.length; i++) { %>
+                <p class="small font-weight-bold"><%= response.result[i].event_date_start %></p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="small font-italic"><a href="./league/<%= response.result[i].league_key %>"><%= response.result[i].league_name %></a></h6>
+                  <h6 class="small font-italic">Start: <%= response.result[i].event_time %></h6>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <% if(locals.response.result[i].event_live == 1) { %>
+                      <h6 class="small text-danger">Live</h6>
+                    <% } %>
+                    <div class="row pb-5">
+                      <div class="col-8 d-flex align-items-center justify-content-start">
+                        <p class="small card-text">
+                          <%= response.result[i].event_home_team %>
+                          <br>
+                          vs.
+                          <br>
+                          <%= response.result[i].event_away_team %>
+                        </p>
+                      </div>
+                      <div class="col-4 d-flex align-items-center justify-content-end">
+                        <p class="small card-text">
+                          <h5><%= response.result[i].event_home_final_result %></h5>
+                        </p>
+                      </div>
+                    </div>
+                    <p class="small text-muted"><%= response.result[i].event_status_info %></p>
+                  </div>
+                </div>
+                <div class="pb-5"></div>
+              <% } %>
+            <% } else { %>
+              <p class="text-muted pt-2 text-justify">
+                There are no live matches for <%= locals.sport %> at this time. Please check back later for latest fixtures.
+              </p>
+            <% } %>
+          </div>
+          <div class="col-md-2 col-lg-3 col-xl-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('partials/footer.ejs') %>
+
+    <%- include('partials/scripts.ejs') %>
+  </body>
+</html>
