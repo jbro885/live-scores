@@ -1,6 +1,7 @@
 // Modules
 var express = require('express');
 var axios = require('axios');
+var io = require('socket.io');
 
 // Global variables
 var baseUrl = 'https://allsportsapi.com';
@@ -12,22 +13,21 @@ var router = express.Router();
 // Routes
 router.get('/', function(req, res)
 {
-  res.render('template',
+  res.render('home',
   {
-    'heading': 'home'
+    
   });
 });
 router.get('/:sport', function(req, res)
 {
   var sport = req.params.sport;
 
-  axios.get(baseUrl + '/api/' + sport + '/?met=Countries&APIkey=' + apiKey)
+  axios.get(baseUrl + '/api/' + sport + '/?met=Livescore&APIkey=' + apiKey)
   .then(function(response)
   {
-    console.log(response.data.result);
-    res.render('template', 
+    res.render('sport', 
     {
-      'heading': sport,
+      'sport': sport,
       'response': response.data
     })
   });
