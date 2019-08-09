@@ -2,6 +2,7 @@
 var express = require('express');
 var axios = require('axios');
 var io = require('socket.io');
+var moment = require('moment');
 
 // Global variables
 var baseUrl = 'https://allsportsapi.com';
@@ -17,7 +18,7 @@ router.get('/football/live', function(req, res)
   .then(function(response)
   {
     // console.log(response.data.result);
-    res.render('live-football', 
+    res.render('live', 
     {
       'sport': 'football',
       'response': response.data
@@ -60,17 +61,18 @@ router.get('/football/league/:league_key', function(req, res)
     })
   });
 });
-router.get('/football/fixtures', function(req, res)
+router.get('/football/fixtures/:date', function(req, res)
 {
-  var sport = req.params.sport;
+  var date = req.params.date;
 
-  axios.get(baseUrl + '/api/football/?met=Fixtures&APIkey=' + apiKey)
+  axios.get(baseUrl + '/api/football/?met=Fixtures&APIkey=' + apiKey + '&from=' + date + '&to=' + date)
   .then(function(response)
   {
     console.log(response.data);
-    res.render('all-leagues', 
+    res.render('fixtures', 
     {
-      'sport': sport,
+      'sport': 'football',
+      'date': date,
       'response': response.data
     })
   });

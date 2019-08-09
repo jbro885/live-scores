@@ -1,10 +1,13 @@
 // Modules
 var express = require('express');
 var axios = require('axios');
+var moment = require('moment');
 
 // Global variables
 var baseUrl = 'https://allsportsapi.com';
 var apiKey = 'edbd62c6bd0e88c46c263c363866a3da865209d385df597ee675b93f86587b65';
+var today = moment().local().format('YYYY-MM-DD');
+var startDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
 
 // Define router for handling routes
 var router = express.Router();
@@ -20,8 +23,8 @@ router.get('/cricket/live', function(req, res)
   axios.get(baseUrl + '/api/cricket/?met=Livescore&APIkey=' + apiKey)
   .then(function(response)
   {
-    // console.log(response.data.result);
-    res.render('live-cricket', 
+    console.log(response.data.result);
+    res.render('live', 
     {
       'sport': 'cricket',
       'response': response.data
@@ -64,17 +67,17 @@ router.get('/cricket/league/:league_key', function(req, res)
     })
   });
 });
-router.get('/cricket/fixtures', function(req, res)
+router.get('/cricket/fixtures/:date', function(req, res)
 {
-  var sport = req.params.sport;
+  var date = req.params.date;
 
-  axios.get(baseUrl + '/api/cricket/?met=Fixtures&APIkey=' + apiKey)
+  axios.get(baseUrl + '/api/cricket/?met=Fixtures&APIkey=' + apiKey + '&from=' + date + '&to=' + date)
   .then(function(response)
   {
-    console.log(response.data);
-    res.render('all-leagues', 
+    res.render('fixtures', 
     {
-      'sport': sport,
+      'sport': 'cricket',
+      'date': date,
       'response': response.data
     })
   });

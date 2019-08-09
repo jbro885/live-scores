@@ -1,3 +1,15 @@
+<script>
+  $(document).ready(function()
+  {
+    var today = moment().format('YYYY-MM-DD');
+
+    $('#fixtures[href]').each(function()
+    {
+      this.href += '/' + today;
+    })
+  });
+</script>
+
 <!-- Navbar -->
 <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top">
   <div class="container">
@@ -15,7 +27,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/football/live">Live Scores</a>
             <a class="dropdown-item" href="/football/leagues">Leagues</a>
-            <a class="dropdown-item" href="/football/fixtures">Fixtures</a>
+            <a id="fixtures" class="dropdown-item" href="/football/fixtures">Fixtures</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -23,9 +35,9 @@
             Cricket
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/cricket/live">Live Scores</a>
+            <a id="fixtures" class="dropdown-item" href="/cricket/live">Live Scores</a>
             <a class="dropdown-item" href="/cricket/leagues">Leagues</a>
-            <a class="dropdown-item" href="/cricket/fixtures">Fixtures</a>
+            <a id="fixtures" class="dropdown-item" href="/cricket/fixtures">Fixtures</a>
           </div>
         </li>
       </ul>
