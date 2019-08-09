@@ -5,45 +5,71 @@
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
         <% if(locals.response.result) { %>
           <% for(var i = 0; i < response.result.length; i++) { %>
-            <p class="small font-weight-bold"><%= response.result[i].event_date_start %></p>
+            <p class="small font-weight-bold"><%= response.result[i].event_date %></p>
             <div class="d-flex align-items-center justify-content-between">
               <h6 class="small font-italic"><a href="./league/<%= response.result[i].league_key %>"><%= response.result[i].league_name %></a></h6>
-              <h6 class="small font-italic">Start: <%= response.result[i].event_time %></h6>
             </div>
             <div class="card">
               <div class="card-body">
-                <% if(locals.response.result[i].event_live == 1) { %>
-                  <h6 class="small text-danger">Live</h6>
-                <% } else { %>
-                  <h6 class="small">Result</h6>
-                <% } %>
-                <div class="row pb-5">
-                  <div class="col align-items-center justify-content-start">
+                <div class="row">
+                  <div class="col">
+                    <% if(locals.response.result[i].event_live == 1) { %>
+                      <h6 class="small text-danger">Live</h6>
+                    <% } %>
+                  </div>
+                  <div class="col text-center">
+                    <% if(response.result[i].event_status == 'Finished') { %>
+                      <p class="small text-muted">FT</p>
+                    <% } else if(response.result[i].event_status == 'Half Time') { %>
+                      <p class="small text-muted">Half Time</p>
+                    <% } else { %>
+                      <p class="small text-muted"><%= response.result[i].event_status %>'</p>
+                    <% } %>
+                  </div>
+                  <div class="col"></div>
+                </div>
+                <div class="row">
+                  <div class="col">
                     <p class="small card-text">
                       <%= response.result[i].event_home_team %>
                     </p>
-                    <h5><%= response.result[i].event_home_final_result %></h5>
+                    <% for(var j = 0; j < response.result[i].goalscorers.length; j++) { %>
+                      <% if(response.result[i].goalscorers[j].home_scorer) { %>
+                      <div class="small card-text text-muted">
+                        <%= response.result[i].goalscorers[j].home_scorer %> (<%= response.result[i].goalscorers[j].time %>')
+                      </div>
+                      <% } %>
+                    <% } %>
                   </div>
-                  <div class="col d-flex align-items-center justify-content-center">
+                  <div class="col d-flex align-items-start justify-content-center">
                     <p class="small card-text">
-                      vs.
+                      <% if(response.result[i].event_final_result != '-') {%>
+                      <h5><%= response.result[i].event_final_result %></h5>
+                      <% } else { %>
+                        <%= response.result[i].event_time %>
+                      <% } %>
                     </p>
                   </div>
-                  <div class="col align-items-center text-right">
+                  <div class="col text-right">
                     <p class="small card-text">
                       <%= response.result[i].event_away_team %>
                     </p>
-                    <h5><%= response.result[i].event_away_final_result %></h5>
+                    <% for(var j = 0; j < response.result[i].goalscorers.length; j++) { %>
+                      <% if(response.result[i].goalscorers[j].away_scorer) { %>
+                      <div class="small card-text text-muted">
+                        <%= response.result[i].goalscorers[j].away_scorer %> (<%= response.result[i].goalscorers[j].time %>')
+                      </div>
+                      <% } %>
+                    <% } %>
                   </div>
                 </div>
-                <p class="small text-muted"><%= response.result[i].event_status_info %></p>
               </div>
             </div>
-            <div class="pb-5"></div>
+            <div class="pb-3"></div>
           <% } %>
         <% } else { %>
           <p class="text-muted pt-2 text-justify">
-            There are no live matches for <%= locals.sport %> at this time. Please check back later for latest fixtures.
+            There are no <%= locals.sport %> matches for that date. Please check back later for latest fixtures.
           </p>
         <% } %>
       </div>

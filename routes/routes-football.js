@@ -17,7 +17,7 @@ router.get('/football/live', function(req, res)
   axios.get(baseUrl + '/api/football/?met=Livescore&APIkey=' + apiKey)
   .then(function(response)
   {
-    // console.log(response.data.result);
+    // console.log(response.data.result[0].event_status);
     res.render('live', 
     {
       'sport': 'football',
