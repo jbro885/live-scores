@@ -5,7 +5,7 @@
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
         <% if(locals.response.result) { %>
           <% for(var i = 0; i < response.result.length; i++) { %>
-            <p class="small font-weight-bold"><%= response.result[i].event_date %></p>
+            <p id="date" class="small font-weight-bold"><%= response.result[i].event_date %></p>
             <div class="d-flex align-items-center justify-content-between">
               <h6 class="small font-italic"><a href="./league/<%= response.result[i].league_key %>"><%= response.result[i].league_name %></a></h6>
             </div>
