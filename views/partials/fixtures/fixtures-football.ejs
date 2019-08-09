@@ -18,7 +18,13 @@
                     <% } %>
                   </div>
                   <div class="col text-center">
-                    <p class="small text-muted">FT</p>
+                    <% if(response.result[i].event_status == 'Finished') { %>
+                      <p class="small text-muted">FT</p>
+                    <% } else if(response.result[i].event_status == 'Half Time') { %>
+                      <p class="small text-muted">Half Time</p>
+                    <% } else { %>
+                      <p class="small text-muted"><%= response.result[i].event_status %>'</p>
+                    <% } %>
                   </div>
                   <div class="col"></div>
                 </div>
@@ -27,6 +33,13 @@
                     <p class="small card-text">
                       <%= response.result[i].event_home_team %>
                     </p>
+                    <% for(var j = 0; j < response.result[i].goalscorers.length; j++) { %>
+                      <% if(response.result[i].goalscorers[j].home_scorer) { %>
+                      <div class="small card-text text-muted">
+                        <%= response.result[i].goalscorers[j].home_scorer %> (<%= response.result[i].goalscorers[j].time %>')
+                      </div>
+                      <% } %>
+                    <% } %>
                   </div>
                   <div class="col d-flex align-items-start justify-content-center">
                     <p class="small card-text">
@@ -41,9 +54,15 @@
                     <p class="small card-text">
                       <%= response.result[i].event_away_team %>
                     </p>
+                    <% for(var j = 0; j < response.result[i].goalscorers.length; j++) { %>
+                      <% if(response.result[i].goalscorers[j].away_scorer) { %>
+                      <div class="small card-text text-muted">
+                        <%= response.result[i].goalscorers[j].away_scorer %> (<%= response.result[i].goalscorers[j].time %>')
+                      </div>
+                      <% } %>
+                    <% } %>
                   </div>
                 </div>
-                <p class="small text-muted"><%= response.result[i].event_status %></p>
               </div>
             </div>
             <div class="pb-3"></div>
